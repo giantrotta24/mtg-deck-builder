@@ -1,8 +1,11 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { useFetch } from './hooks/useFetch';
 
 function App() {
+  const test = useFetch('cards/search?q=BrilliantHalo');
+  console.log('🚀 ~ file: App.tsx ~ line 8 ~ App ~ test', test);
   return (
     <div className="App">
       <header className="App-header">
