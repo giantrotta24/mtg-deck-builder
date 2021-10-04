@@ -9,7 +9,7 @@ The motivation behind this project was to combine some of the functionality of t
 
 ## Tech/framework used
 <b>Built with</b>
-- JavaScript ES6
+- [TypeScript](https://www.typescriptlang.org/)
 - [React.js](https://reactjs.org/)
 - [create-react-app](https://reactjs.org/docs/create-a-new-react-app.html)
 - [React Router](https://reactrouter.com/)
