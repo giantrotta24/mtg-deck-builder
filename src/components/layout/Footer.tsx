@@ -6,7 +6,7 @@ import Link from '@mui/material/Link';
 
 const Copyright = (): JSX.Element => {
   return (
-    <Typography variant="body2">
+    <Typography variant="body2" color="text.secondary">
       {'Copyright © '}
       <Link color="inherit" href="https://giantrotta.dev">
         Gian Trotta
@@ -25,7 +25,10 @@ const Footer = (): JSX.Element => {
         py: 3,
         px: 2,
         mt: 'auto',
-        backgroundColor: theme => theme.palette.grey[200],
+        backgroundColor: theme =>
+          theme.palette.mode === 'light'
+            ? theme.palette.grey[200]
+            : theme.palette.grey[800],
       }}
     >
       <Container maxWidth="sm">
