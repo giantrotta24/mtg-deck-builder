@@ -10,13 +10,19 @@ import CardList from './CardList';
 
 const BASE_URL = 'https://api.scryfall.com/';
 
-const CardSearchContainer = styled(Box)`
-  border: solid 1px;
-  border-radius: 4px;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-`;
+const CardSearchContainer = styled(Box)(
+  ({ theme }) => `
+    border: solid 1px ${
+      theme.palette.mode === 'light'
+        ? theme.palette.primary.dark
+        : theme.palette.primary.light
+    };
+    border-radius: 4px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+  `
+);
 
 const initialState = {
   cards: [],

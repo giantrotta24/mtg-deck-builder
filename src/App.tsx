@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { PaletteMode } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { ThemeProvider as SCThemeProvider } from 'styled-components';
 
 import { ColorModeContext } from './context/ColorModeContext';
 
@@ -40,16 +41,18 @@ function App() {
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
-        <Layout>
-          <Router>
-            <Switch>
-              <Route path="/card/:id">{/* <MovieDetail /> */}</Route>
-              <Route path="/">
-                <Home />
-              </Route>
-            </Switch>
-          </Router>
-        </Layout>
+        <SCThemeProvider theme={theme}>
+          <Layout>
+            <Router>
+              <Switch>
+                <Route path="/card/:id">{/* <MovieDetail /> */}</Route>
+                <Route path="/">
+                  <Home />
+                </Route>
+              </Switch>
+            </Router>
+          </Layout>
+        </SCThemeProvider>
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
