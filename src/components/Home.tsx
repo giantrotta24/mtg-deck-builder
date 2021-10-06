@@ -1,7 +1,13 @@
 import React from 'react';
 
+import CardSearch from './CardSearch';
+
 const Home = (): JSX.Element => {
-  return <p>Hello World</p>;
+  return (
+    <div>
+      <CardSearch />
+    </div>
+  );
 };
 
 export default Home;

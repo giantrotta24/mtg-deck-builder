@@ -1,5 +1,9 @@
 import { useEffect, useReducer, useRef } from 'react';
 
+/* 
+  API base URL
+  TODO: Move to env file
+*/
 const BASE_URL = 'https://api.scryfall.com/';
 
 const initialState = {
@@ -10,6 +14,7 @@ const initialState = {
 
 type ACTIONTYPE = { type?: string; payload?: any };
 
+// set up our reducer
 function responseReducer(state: typeof initialState, action: ACTIONTYPE) {
   switch (action.type) {
     case 'fetching':
@@ -24,36 +29,44 @@ function responseReducer(state: typeof initialState, action: ACTIONTYPE) {
 }
 
 export const useFetch = (url: string) => {
+  // create a meomized object of our response
   const cache = useRef({}) as any;
   const [state, dispatch] = useReducer(responseReducer, initialState);
 
   useEffect(() => {
-    let cancelRequest = false;
+    // setup DOM api AbortController to avoid React mount/unmount error
+    const abortController = new AbortController();
     if (!url) return;
 
     const fetchData = async () => {
       dispatch({ type: 'fetching' });
+      // only call api if our cache is empty
       if (cache.current[url]) {
         const data = cache.current[url];
         dispatch({ type: 'success', payload: data });
       } else {
         try {
-          const response = await fetch(`${BASE_URL}${url}`);
+          const response = await fetch(`${BASE_URL}${url}`, {
+            signal: abortController.signal,
+          });
           const data = await response.json();
+          // set our cache
           cache.current[url] = data;
-          if (cancelRequest) return;
           dispatch({ type: 'success', payload: data });
         } catch (error: any) {
-          if (cancelRequest) return;
-          console.error(error.message);
-          dispatch({ type: 'fail', payload: error.message });
+          if (!abortController.signal.aborted) {
+            console.error(error.message);
+            dispatch({ type: 'fail', payload: error.message });
+          }
         }
       }
     };
 
     fetchData();
+
+    // run cleanup if component unmounts
     return function cleanup() {
-      cancelRequest = true;
+      abortController.abort();
     };
   }, [url]);
 
