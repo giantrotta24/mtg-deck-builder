@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { useInput } from '../hooks/useInput';
 
 import CardList from './CardList';
+import LoadingSpinner from './LoadingSpinner';
 
 const BASE_URL = 'https://api.scryfall.com/';
 
@@ -48,15 +49,19 @@ function responseReducer(state: typeof initialState, action: ACTIONTYPE) {
 
 const CardSearch = () => {
   const [state, dispatch] = useReducer(responseReducer, initialState);
+
   const { value, bind, reset } = useInput('');
 
   const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     dispatch({ type: 'fetching' });
     try {
+      // fetch api
       const response = await fetch(`${BASE_URL}cards/search?q=${value}`);
       const data = await response.json();
 
+      // sometimes api will return with error in response but isnt caught
+      // we want to trigger our catch when this happens and stop the try
       if (data.object === 'error') {
         throw new Error(data.details);
       }
@@ -91,7 +96,11 @@ const CardSearch = () => {
               mt: 3,
             }}
           >
-            Search
+            {state.loading ? (
+              <LoadingSpinner style={{ width: '100%', height: 30 }} />
+            ) : (
+              'Search'
+            )}
           </Button>
         </CardSearchContainer>
       </form>
