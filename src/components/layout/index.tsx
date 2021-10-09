@@ -24,7 +24,7 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
     >
       <CssBaseline />
       {/* Nav here */}
-      <LayoutContainer sx={{ mt: 8, mb: 2 }} component="main" maxWidth="md">
+      <LayoutContainer sx={{ mt: 4, mb: 2 }} component="main" maxWidth="md">
         <ColorModeSwitch />
         {children}
       </LayoutContainer>

@@ -9,7 +9,7 @@ import { ColorModeContext } from '../context/ColorModeContext';
 
 const ColorModeSwitch = (): JSX.Element => {
   const theme = useTheme();
-  const colorMode = React.useContext(ColorModeContext);
+  const { toggleColorMode } = React.useContext(ColorModeContext);
 
   return (
     <Box
@@ -24,11 +24,7 @@ const ColorModeSwitch = (): JSX.Element => {
       }}
     >
       {theme.palette.mode} mode
-      <IconButton
-        sx={{ ml: 1 }}
-        onClick={colorMode.toggleColorMode}
-        color="inherit"
-      >
+      <IconButton sx={{ ml: 1 }} onClick={toggleColorMode} color="inherit">
         {theme.palette.mode === 'dark' ? (
           <Brightness7Icon />
         ) : (

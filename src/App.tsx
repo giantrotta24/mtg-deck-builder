@@ -1,14 +1,15 @@
 import React, { useState, useMemo } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { ThemeProvider as SCThemeProvider } from 'styled-components';
 import { PaletteMode } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { ThemeProvider as SCThemeProvider } from 'styled-components';
 
 import { ColorModeContext } from './context/ColorModeContext';
 
 import Layout from './components/layout';
-import Home from './components/Home';
+import Home from './components/pages/Home';
+import CardDetails from './components/pages/CardDetails';
 
 function App() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -41,13 +42,16 @@ function App() {
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
+        {/* TODO: do we need a second provider? is there are better way to give styled-components acces to the theme?? */}
         <SCThemeProvider theme={theme}>
           <Layout>
             <Router>
               <Switch>
-                <Route path="/card/:id">{/* <MovieDetail /> */}</Route>
                 <Route path="/">
                   <Home />
+                </Route>
+                <Route path="/cards/:id">
+                  <CardDetails />
                 </Route>
               </Switch>
             </Router>

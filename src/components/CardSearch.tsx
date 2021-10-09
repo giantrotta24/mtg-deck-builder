@@ -1,8 +1,8 @@
 import React, { useReducer } from 'react';
+import styled from 'styled-components';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Input from '@mui/material/Input';
-import styled from 'styled-components';
 
 import { useInput } from '../hooks/useInput';
 
@@ -47,9 +47,8 @@ function responseReducer(state: typeof initialState, action: ACTIONTYPE) {
   }
 }
 
-const CardSearch = () => {
+const CardSearch = (): JSX.Element => {
   const [state, dispatch] = useReducer(responseReducer, initialState);
-
   const { value, bind, reset } = useInput('');
 
   const handleSubmit = async (event: React.SyntheticEvent) => {
@@ -97,7 +96,7 @@ const CardSearch = () => {
             }}
           >
             {state.loading ? (
-              <LoadingSpinner style={{ width: '100%', height: 30 }} />
+              <LoadingSpinner style={{ width: '100%', height: 25 }} />
             ) : (
               'Search'
             )}
