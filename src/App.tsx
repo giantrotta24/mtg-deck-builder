@@ -47,11 +47,11 @@ function App() {
           <Layout>
             <Router>
               <Switch>
-                <Route path="/">
-                  <Home />
-                </Route>
                 <Route path="/cards/:id">
                   <CardDetails />
+                </Route>
+                <Route path="/">
+                  <Home />
                 </Route>
               </Switch>
             </Router>
