@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
+import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import LoopIcon from '@mui/icons-material/Loop';
 
@@ -14,9 +15,15 @@ const CardImage = ({ images, name, isMultiFace }: CardImageTypes) => {
   };
 
   return (
-    <>
+    <Box my={3} display="flex" justifyContent="center">
       {isMultiFace ? (
-        <ImageListItem component="div">
+        <ImageListItem
+          component="div"
+          sx={{
+            width: '17.5rem',
+            height: '32.5rem',
+          }}
+        >
           <img
             src={!isFlippedImage ? images[0] : images[1]}
             alt={name}
@@ -48,9 +55,11 @@ const CardImage = ({ images, name, isMultiFace }: CardImageTypes) => {
           alt={name}
           loading="lazy"
           style={{ borderRadius: '4.75% / 3.5%' }}
+          width="280px"
+          height="420px"
         />
       )}
-    </>
+    </Box>
   );
 };
 
