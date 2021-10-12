@@ -1,31 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import LoopIcon from '@mui/icons-material/Loop';
 
-import { CardImageTypes } from '../Models/CardImage';
+import { CardImageTypes } from '../models/CardImage';
 
-const CardImage = ({ images, name, isMultiFace }: CardImageTypes) => {
-  const [isFlippedImage, setIsFlippedImage] = useState<boolean>(false);
-
-  const toggleFlipImage = () => {
-    setIsFlippedImage(prev => !prev);
-  };
-
+const CardImage = ({
+  images,
+  name,
+  isMultiFace,
+  cardFace,
+  transformCard,
+}: CardImageTypes) => {
   return (
     <Box my={3} display="flex" justifyContent="center">
       {isMultiFace ? (
         <ImageListItem
           component="div"
           sx={{
-            width: '17.5rem',
-            height: '32.5rem',
+            width: '18rem',
+            height: '33rem',
           }}
         >
           <img
-            src={!isFlippedImage ? images[0] : images[1]}
+            src={cardFace === 'front' ? images[0] : images[1]}
             alt={name}
             loading="lazy"
             style={{ borderRadius: '4.75% / 3.5%' }}
@@ -41,7 +41,7 @@ const CardImage = ({ images, name, isMultiFace }: CardImageTypes) => {
               <IconButton
                 sx={{ color: 'white' }}
                 aria-label={`Loop ${name}`}
-                onClick={toggleFlipImage}
+                onClick={transformCard}
               >
                 <LoopIcon />
               </IconButton>
@@ -55,8 +55,8 @@ const CardImage = ({ images, name, isMultiFace }: CardImageTypes) => {
           alt={name}
           loading="lazy"
           style={{ borderRadius: '4.75% / 3.5%' }}
-          width="280px"
-          height="420px"
+          width="320px"
+          height="500px"
         />
       )}
     </Box>
