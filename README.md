@@ -15,3 +15,8 @@ The motivation behind this project was to combine some of the functionality of t
 - [React Router](https://reactrouter.com/)
 - [Material UI](https://mui.com/)
 - [Styled Components](https://styled-components.com/)
+
+## Start the project
+Clone the repo.
+Install dependencies by running `yarn install`
+Start dev environment by running `yarn start
