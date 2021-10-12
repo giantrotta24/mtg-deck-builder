@@ -19,4 +19,4 @@ The motivation behind this project was to combine some of the functionality of t
 ## Start the project
 - Clone the repo.
 - Install dependencies by running `yarn install`
-- Start dev environment by running `yarn start
+- Start dev environment by running `yarn start`
