@@ -17,6 +17,6 @@ The motivation behind this project was to combine some of the functionality of t
 - [Styled Components](https://styled-components.com/)
 
 ## Start the project
-Clone the repo.
-Install dependencies by running `yarn install`
-Start dev environment by running `yarn start
+- Clone the repo.
+- Install dependencies by running `yarn install`
+- Start dev environment by running `yarn start
