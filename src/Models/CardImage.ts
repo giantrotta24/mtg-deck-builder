@@ -1,7 +1,7 @@
-export type CardFaces = string[];
+export type CardFaces = any[];
 
 export interface CardImageTypes {
-  images: CardFaces;
+  images?: CardFaces;
   name: string;
   isMultiFace: boolean;
   cardFace: string;

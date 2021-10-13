@@ -28,6 +28,15 @@ function responseReducer(state: typeof initialState, action: ACTIONTYPE) {
   }
 }
 
+/**
+ *
+ * @param url The request URL
+ *
+ * Returns
+ * @param {object} data - The response from our request
+ * @param {object} error - HTTP error
+ * @param {boolean} loading - The loading status of our request
+ */
 export const useFetch = (url: string) => {
   // create a meomized object of our response
   const cache = useRef({}) as any;

@@ -25,7 +25,7 @@ const CardImage = ({
           }}
         >
           <img
-            src={cardFace === 'front' ? images[0] : images[1]}
+            src={cardFace === 'front' ? images?.[0] : images?.[1]}
             alt={name}
             loading="lazy"
             style={{ borderRadius: '4.75% / 3.5%' }}
@@ -51,7 +51,7 @@ const CardImage = ({
         </ImageListItem>
       ) : (
         <img
-          src={images[0]}
+          src={images?.[0]}
           alt={name}
           loading="lazy"
           style={{ borderRadius: '4.75% / 3.5%' }}

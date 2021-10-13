@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 
 type InitialValue = '';
 
+/**
+ *
+ * A custom hook that allows us to manage state for an Input Component
+ * Similar to how you would track form state with Formik but for an individual input
+ */
 export const useInput = (initialValue: InitialValue) => {
   const [value, setValue] = useState<InitialValue>(initialValue);
 
